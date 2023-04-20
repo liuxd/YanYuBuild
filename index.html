@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>煙雨江湖搭配器</title>
+    </head>
+    <body>
+        <div id="candidate-room"></div>
+        <div id="main-player-room"></div>
+        <div id="secondary-player-room"></div>
+
+        <script src="./db.js"></script>
+        <script>
+            db.hero.forEach(element => {
+                let candidateRoom = document.getElementById('candidate-room');
+                let img = document.createElement('img');
+                img.src = 'images/' + element.name + '.png';
+                img.width = 100;
+                img.height = 140;
+                candidateRoom.appendChild(img);
+            });
+        </script>
+    </body>
+</html>
