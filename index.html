@@ -99,6 +99,9 @@
                 img.id = hero.name;
                 img.draggable = true;
                 img.ondragstart = drag;
+                img.ondblclick = () => {
+                    window.open('https://wiki.biligame.com/yanyu/' + hero.name);
+                };
 
                 candidateRoom.appendChild(img);
             });
@@ -110,6 +113,9 @@
                 skillDiv.draggable = true;
                 skillDiv.ondragstart = drag;
                 skillDiv.style.cssText = 'color: ' + skillColor[skill.type];
+                skillDiv.ondblclick = () => {
+                    window.open('https://wiki.biligame.com/yanyu/%E6%AD%A6%E5%AD%A6/' + skill.name);
+                };
 
                 if (skill.type === 'fly') {
                     skillFly.appendChild(skillDiv);
