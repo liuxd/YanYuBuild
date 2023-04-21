@@ -36,6 +36,9 @@
         <div class="skill-title">輕功：</div>
     </div>
 </div>
+<div class="button-box">
+    <div id="btn-capture" class="btn">截圖配置</div>
+</div>
 
 <script src="js/db.js"></script>
 <script src="js/utils.js"></script>
@@ -75,6 +78,7 @@
             img.id = hero.name;
             img.draggable = true;
             img.ondragstart = drag;
+            img.style.cssText = 'cursor: pointer';
             img.ondblclick = () => {
                 window.open('https://wiki.biligame.com/yanyu/' + hero.name);
             };

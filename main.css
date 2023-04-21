@@ -1,4 +1,4 @@
-#main-player-room, #skill-box {
+#main-player-room, #skill-box, .button-box {
     margin: 5px;
     width: 700px;
     height: 650px;
@@ -8,9 +8,15 @@
 
 #skill-box {
     width: 950px;
+    height: 450px;
 }
 
-.skill {
+.button-box {
+    width: 950px;
+    height: 180px;
+}
+
+.skill, .btn {
     width: 100px;
     padding: 3px;
     border: 2px solid purple;
@@ -18,6 +24,7 @@
     font-family: "Yuanti SC", serif;
     float: left;
     margin: 5px;
+    cursor: pointer;
 }
 
 .player-room {
