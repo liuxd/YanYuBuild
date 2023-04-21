@@ -1,24 +1,24 @@
 #main-player-room, #skill-box {
     margin: 10px;
     width: 48%;
-    height: 600px;
+    height: 650px;
     border: 3px solid purple;
     float: left;
 }
 
 .skill {
-    width: 100px;
-    border: 2px solid purple;
-    margin: 5px;
+    width: 120px;
     padding: 3px;
-    float: left;
+    border: 2px solid purple;
     text-align: center;
     font-family: "Yuanti SC", serif;
+    float: left;
+    margin: 5px;
 }
 
 .player-room {
     width: 22%;
-    height: 45%;
+    height: 47%;
     border: 2px solid purple;
     margin: 10px;
     float: left;
@@ -34,6 +34,7 @@
 .player-skill {
     width: 120px;
     height: 30px;
+    padding: 3px;
     border: 2px solid purple;
     margin: 5px auto auto;
 }

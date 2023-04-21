@@ -17,6 +17,10 @@
             function createDiv(className) {
                 let div = document.createElement('div');
                 div.className = className;
+                div.draggable = true;
+                div.ondrop = drop;
+                div.ondragover = allowDrop;
+
                 return div;
             }
 
@@ -30,18 +34,16 @@
 
             const drop = function (ev) {
                 ev.preventDefault();
-                let data = ev.dataTransfer.getData("text");
-                ev.target.appendChild(document.getElementById(data));
+                let id = ev.dataTransfer.getData("text");
+                let elem = document.getElementById(id);
+                elem.style.cssText = 'border: none;margin: 0';
+                ev.target.appendChild(elem);
             }
 
             Array(8).fill().map(() => {
                 let playerRoom = createDiv('player-room');
 
                 let playerHeadImg = createDiv('player-head-img');
-                playerHeadImg.draggable = true;
-                playerHeadImg.ondrop = drop;
-                playerHeadImg.ondragover = allowDrop;
-
                 let playSkillAttack = createDiv('player-skill player-skill-attack');
                 let playSkillMagic = createDiv('player-skill player-skill-magic');
                 let playSkillFly = createDiv('player-skill player-skill-fly');
@@ -71,6 +73,7 @@
                 skillDiv.textContent = skill.name;
                 skillDiv.id = skill.name;
                 skillDiv.draggable = true;
+                skillDiv.ondragstart = drag;
 
                 skillBox.appendChild(skillDiv);
             });
