@@ -1,7 +1,39 @@
-#main-player-room {
+#main-player-room, #skill-box {
     margin: 10px;
-    width: 500px;
+    width: 48%;
     height: 600px;
     border: 3px solid purple;
-    border-radius: 3%;
+    float: left;
+}
+
+.skill {
+    width: 100px;
+    border: 2px solid purple;
+    margin: 5px;
+    padding: 3px;
+    float: left;
+    text-align: center;
+    font-family: "Yuanti SC", serif;
+}
+
+.player-room {
+    width: 22%;
+    height: 45%;
+    border: 2px solid purple;
+    margin: 10px;
+    float: left;
+}
+
+.player-head-img {
+    width: 100px;
+    height: 140px;
+    border: 1px solid purple;
+    margin: 5px auto auto;
+}
+
+.player-skill {
+    width: 120px;
+    height: 30px;
+    border: 2px solid purple;
+    margin: 5px auto auto;
 }
