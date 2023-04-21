@@ -178,7 +178,7 @@ let db = {
             subtype: 'fist',
         },
         {
-            name: '镇派',
+            name: '幻影无形剑',
             type: 'attack',
             subtype: 'sword',
         },
