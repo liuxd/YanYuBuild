@@ -1,13 +1,13 @@
 #main-player-room, #skill-box {
     margin: 5px;
-    width: 550px;
+    width: 700px;
     height: 650px;
     border: 3px solid purple;
     float: left;
 }
 
 #skill-box {
-    width: 1100px;
+    width: 950px;
 }
 
 .skill {
@@ -21,7 +21,7 @@
 }
 
 .player-room {
-    width: 22%;
+    width: 18%;
     height: 47%;
     border: 2px solid purple;
     margin: 5px;
