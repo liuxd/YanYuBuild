@@ -1,130 +1,107 @@
 <html lang="en-UK">
-    <head>
-        <title>煙雨江湖搭配器</title>
-        <link rel="stylesheet" href="./main.css">
-    </head>
-    <body>
-        <div id="candidate-room"></div>
-        <div id="main-player-room"></div>
-        <div id="skill-box">
-            <div id="skill-attack" class="skill-sub-box">
-                <div id="skill-attack-sword" class="skill-sub-box">
-                    <div class="skill-title">劍：</div>
-                </div>
-                <div id="skill-attack-saber" class="skill-sub-box">
-                    <div class="skill-title">刀：</div>
-                </div>
-                <div id="skill-attack-fist" class="skill-sub-box">
-                    <div class="skill-title">拳：</div>
-                </div>
-                <div id="skill-attack-pike" class="skill-sub-box">
-                    <div class="skill-title">棍：</div>
-                </div>
-            </div>
-            <div id="skill-magic" class="skill-sub-box">
-                <div id="skill-magic-sun" class="skill-sub-box">
-                    <div class="skill-title">陽：</div>
-                </div>
-                <div id="skill-magic-moon" class="skill-sub-box">
-                    <div class="skill-title">陰：</div>
-                </div>
-                <div id="skill-magic-mixed" class="skill-sub-box">
-                    <div class="skill-title">混：</div>
-                </div>
-            </div>
-            <div id="skill-fly" class="skill-sub-box">
-                <div class="skill-title">輕功：</div>
-            </div>
+<head>
+    <title>煙雨江湖搭配器</title>
+    <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+<div id="candidate-room"></div>
+<div id="main-player-room"></div>
+<div id="skill-box">
+    <div id="skill-attack" class="skill-sub-box">
+        <div id="skill-attack-sword" class="skill-sub-box">
+            <div class="skill-title">劍：</div>
         </div>
+        <div id="skill-attack-saber" class="skill-sub-box">
+            <div class="skill-title">刀：</div>
+        </div>
+        <div id="skill-attack-fist" class="skill-sub-box">
+            <div class="skill-title">拳：</div>
+        </div>
+        <div id="skill-attack-pike" class="skill-sub-box">
+            <div class="skill-title">棍：</div>
+        </div>
+    </div>
+    <div id="skill-magic" class="skill-sub-box">
+        <div id="skill-magic-sun" class="skill-sub-box">
+            <div class="skill-title">陽：</div>
+        </div>
+        <div id="skill-magic-moon" class="skill-sub-box">
+            <div class="skill-title">陰：</div>
+        </div>
+        <div id="skill-magic-mixed" class="skill-sub-box">
+            <div class="skill-title">混：</div>
+        </div>
+    </div>
+    <div id="skill-fly" class="skill-sub-box">
+        <div class="skill-title">輕功：</div>
+    </div>
+</div>
 
-        <script src="./db.js"></script>
-        <script>
-            let mainPlayerRoom = document.getElementById('main-player-room');
-            let candidateRoom = document.getElementById('candidate-room');
-            let skillFly = document.getElementById('skill-fly');
+<script src="js/db.js"></script>
+<script src="js/utils.js"></script>
+<script>
+    (function () {
+        let mainPlayerRoom = document.getElementById('main-player-room');
+        let candidateRoom = document.getElementById('candidate-room');
+        let skillFly = document.getElementById('skill-fly');
 
-            let skillColor = {
-                attack: 'darkred',
-                magic: 'orange',
-                fly: 'blue'
+        let skillColor = {
+            attack: 'darkred',
+            magic: 'orange',
+            fly: 'blue'
+        }
+
+        Array(10).fill().map(() => {
+            let playerRoom = createDiv('player-room');
+
+            let playerHeadImg = createDiv('player-head-img');
+            let playSkillAttack = createDiv('player-skill player-skill-attack');
+            let playSkillMagic = createDiv('player-skill player-skill-magic');
+            let playSkillFly = createDiv('player-skill player-skill-fly');
+
+            playerRoom.appendChild(playerHeadImg);
+            playerRoom.appendChild(playSkillAttack);
+            playerRoom.appendChild(playSkillMagic);
+            playerRoom.appendChild(playSkillFly);
+
+            mainPlayerRoom.appendChild(playerRoom);
+        });
+
+        db.hero.forEach(hero => {
+            let img = document.createElement('img');
+            img.src = 'images/' + hero.name + '.png';
+            img.width = 100;
+            img.height = 140;
+            img.id = hero.name;
+            img.draggable = true;
+            img.ondragstart = drag;
+            img.ondblclick = () => {
+                window.open('https://wiki.biligame.com/yanyu/' + hero.name);
+            };
+
+            candidateRoom.appendChild(img);
+        });
+
+        db.skill.forEach(skill => {
+            let skillDiv = createDiv('skill');
+            skillDiv.textContent = skill.name;
+            skillDiv.id = skill.name;
+            skillDiv.draggable = true;
+            skillDiv.ondragstart = drag;
+            skillDiv.style.cssText = 'color: ' + skillColor[skill.type];
+            skillDiv.ondblclick = () => {
+                window.open('https://wiki.biligame.com/yanyu/%E6%AD%A6%E5%AD%A6/' + skill.name);
+            };
+
+            if (skill.type === 'fly') {
+                skillFly.appendChild(skillDiv);
+            } else {
+                let containerId = 'skill-' + skill.type + '-' + skill.subtype;
+                let container = document.getElementById(containerId);
+                container.appendChild(skillDiv);
             }
-
-            function createDiv(className) {
-                let div = document.createElement('div');
-                div.className = className;
-                div.draggable = true;
-                div.ondrop = drop;
-                div.ondragover = allowDrop;
-
-                return div;
-            }
-
-            const allowDrop = function (ev) {
-                ev.preventDefault();
-            }
-
-            const drag = function (ev) {
-                ev.dataTransfer.setData("text", ev.target.id);
-            }
-
-            const drop = function (ev) {
-                ev.preventDefault();
-                let id = ev.dataTransfer.getData("text");
-                let elem = document.getElementById(id);
-                elem.style.cssText = 'border: none;margin: 0';
-                ev.target.appendChild(elem);
-            }
-
-            Array(10).fill().map(() => {
-                let playerRoom = createDiv('player-room');
-
-                let playerHeadImg = createDiv('player-head-img');
-                let playSkillAttack = createDiv('player-skill player-skill-attack');
-                let playSkillMagic = createDiv('player-skill player-skill-magic');
-                let playSkillFly = createDiv('player-skill player-skill-fly');
-
-                playerRoom.appendChild(playerHeadImg);
-                playerRoom.appendChild(playSkillAttack);
-                playerRoom.appendChild(playSkillMagic);
-                playerRoom.appendChild(playSkillFly);
-
-                mainPlayerRoom.appendChild(playerRoom);
-            });
-
-            db.hero.forEach(hero => {
-                let img = document.createElement('img');
-                img.src = 'images/' + hero.name + '.png';
-                img.width = 100;
-                img.height = 140;
-                img.id = hero.name;
-                img.draggable = true;
-                img.ondragstart = drag;
-                img.ondblclick = () => {
-                    window.open('https://wiki.biligame.com/yanyu/' + hero.name);
-                };
-
-                candidateRoom.appendChild(img);
-            });
-
-            db.skill.forEach(skill => {
-                let skillDiv = createDiv('skill');
-                skillDiv.textContent = skill.name;
-                skillDiv.id = skill.name;
-                skillDiv.draggable = true;
-                skillDiv.ondragstart = drag;
-                skillDiv.style.cssText = 'color: ' + skillColor[skill.type];
-                skillDiv.ondblclick = () => {
-                    window.open('https://wiki.biligame.com/yanyu/%E6%AD%A6%E5%AD%A6/' + skill.name);
-                };
-
-                if (skill.type === 'fly') {
-                    skillFly.appendChild(skillDiv);
-                } else {
-                    let containerId = 'skill-' + skill.type + '-' + skill.subtype;
-                    let container = document.getElementById(containerId);
-                    container.appendChild(skillDiv);
-                }
-            });
-        </script>
-    </body>
+        });
+    })();
+</script>
+</body>
 </html>
