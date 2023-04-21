@@ -6,13 +6,48 @@
     <body>
         <div id="candidate-room"></div>
         <div id="main-player-room"></div>
-        <div id="skill-box"></div>
+        <div id="skill-box">
+            <div id="skill-attack" class="skill-sub-box">
+                <div id="skill-attack-sword" class="skill-sub-box">
+                    <div class="skill-title">劍：</div>
+                </div>
+                <div id="skill-attack-saber" class="skill-sub-box">
+                    <div class="skill-title">刀：</div>
+                </div>
+                <div id="skill-attack-fist" class="skill-sub-box">
+                    <div class="skill-title">拳：</div>
+                </div>
+                <div id="skill-attack-pike" class="skill-sub-box">
+                    <div class="skill-title">棍：</div>
+                </div>
+            </div>
+            <div id="skill-magic" class="skill-sub-box">
+                <div id="skill-magic-sun" class="skill-sub-box">
+                    <div class="skill-title">陽：</div>
+                </div>
+                <div id="skill-magic-moon" class="skill-sub-box">
+                    <div class="skill-title">陰：</div>
+                </div>
+                <div id="skill-magic-mixed" class="skill-sub-box">
+                    <div class="skill-title">混：</div>
+                </div>
+            </div>
+            <div id="skill-fly" class="skill-sub-box">
+                <div class="skill-title">輕功：</div>
+            </div>
+        </div>
 
         <script src="./db.js"></script>
         <script>
             let mainPlayerRoom = document.getElementById('main-player-room');
             let candidateRoom = document.getElementById('candidate-room');
-            let skillBox = document.getElementById('skill-box');
+            let skillFly = document.getElementById('skill-fly');
+
+            let skillColor = {
+                attack: 'darkred',
+                magic: 'orange',
+                fly: 'blue'
+            }
 
             function createDiv(className) {
                 let div = document.createElement('div');
@@ -74,8 +109,15 @@
                 skillDiv.id = skill.name;
                 skillDiv.draggable = true;
                 skillDiv.ondragstart = drag;
+                skillDiv.style.cssText = 'color: ' + skillColor[skill.type];
 
-                skillBox.appendChild(skillDiv);
+                if (skill.type === 'fly') {
+                    skillFly.appendChild(skillDiv);
+                } else {
+                    let containerId = 'skill-' + skill.type + '-' + skill.subtype;
+                    let container = document.getElementById(containerId);
+                    container.appendChild(skillDiv);
+                }
             });
         </script>
     </body>
