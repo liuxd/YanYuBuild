@@ -12,17 +12,17 @@ let db = {
         },
         {
             name: '拜妮娜',
-            gender: 'male',
+            gender: 'female',
             type: 'limited',
         },
         {
             name: '南知意',
-            gender: 'male',
+            gender: 'female',
             type: 'limited',
         },
         {
             name: '萧佩吟',
-            gender: 'male',
+            gender: 'female',
             type: 'paid',
         },
         {
@@ -32,12 +32,12 @@ let db = {
         },
         {
             name: '沙孤兰',
-            gender: 'male',
+            gender: 'female',
             type: 'limited',
         },
         {
             name: '巫灵儿',
-            gender: 'male',
+            gender: 'female',
             type: 'paid',
         },
         {
@@ -47,22 +47,22 @@ let db = {
         },
         {
             name: '月蓉',
-            gender: 'male',
+            gender: 'female',
             type: 'paid',
         },
         {
             name: '苏念雪',
-            gender: 'male',
+            gender: 'female',
             type: 'free',
         },
         {
             name: '柳如意',
-            gender: 'male',
+            gender: 'female',
             type: 'free',
         },
         {
             name: '钟无月',
-            gender: 'male',
+            gender: 'female',
             type: 'free',
         },
         {
@@ -72,7 +72,7 @@ let db = {
         },
         {
             name: '凌烟',
-            gender: 'male',
+            gender: 'female',
             type: 'paid',
         },
         {
@@ -97,7 +97,7 @@ let db = {
         },
         {
             name: '秦无双',
-            gender: 'male',
+            gender: 'female',
             type: 'paid',
         },
         {
@@ -117,7 +117,7 @@ let db = {
         },
         {
             name: '桃花',
-            gender: 'male',
+            gender: 'female',
             type: 'limited',
         },
         {
@@ -139,6 +139,11 @@ let db = {
             name: '杨延轩',
             gender: 'male',
             type: 'paid',
+        },
+        {
+            name: '淨',
+            gender: 'female',
+            type: 'limited',
         }
     ],
     skill: [
