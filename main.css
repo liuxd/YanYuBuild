@@ -8,7 +8,7 @@
 
 #skill-box {
     width: 950px;
-    height: 450px;
+    height: 650px;
 }
 
 .button-box {
@@ -17,7 +17,7 @@
 }
 
 .skill, .btn {
-    width: 100px;
+    width: 90px;
     padding: 3px;
     border: 2px solid purple;
     text-align: center;
@@ -43,7 +43,7 @@
 }
 
 .player-skill {
-    width: 100px;
+    width: 90px;
     height: 30px;
     padding: 3px;
     border: 2px solid purple;
@@ -56,6 +56,7 @@
 }
 
 .skill-title {
+    width: 50px;
     font-family: "Yuanti SC", serif;
     float: left;
     margin: 5px;
